@@ -17,11 +17,19 @@ function parseDate(date) {
   return Moment(date).format('M-D-YYYY');
 }
 
+function getRealDate(date) {
+  return parseDate(
+    Moment(date)
+      .subtract(1, 'day')
+      .toDate()
+  );
+}
+
 export default function CountryDailyChart() {
-  const [date, setDate] = useState(parseDate(Moment().subtract(1, 'day')));
+  const [date, setDate] = useState(Moment());
   const [showChina, setShowChina] = useState(false);
   const [minData, setMinData] = useState(100);
-  const [data, errors, loading] = useApiData('daily/' + date);
+  const [data, errors, loading] = useApiData('daily/' + getRealDate(date));
 
   if (errors) {
     console.error(errors);
@@ -97,7 +105,7 @@ export default function CountryDailyChart() {
 
   const handleDateChange = e => {
     e.persist();
-    setDate(parseDate(e.target.value));
+    setDate(e.target.value);
   };
 
   const handleMinDataChange = e => {
@@ -135,7 +143,6 @@ export default function CountryDailyChart() {
           label="Minimum Nº of Cases"
           type="number"
           defaultValue={minData}
-          defaultMin="0"
           onChange={handleMinDataChange}
           style={{ marginLeft: '1rem' }}
         />
