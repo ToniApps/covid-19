@@ -1,25 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Container, Typography } from '@material-ui/core';
+import useApiData, { BASE_URL } from './services/api';
+import CountryStats from './components/CountryStats';
+import GlobalStats from './components/GlobalStats';
+import Moment from 'moment';
 
 function App() {
+  const [data, errors, loading] = useApiData();
+
+  let lastUpdate = '...';
+
+  if (data) {
+    lastUpdate = Moment(data.lastUpdate).toString();
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container style={{ marginTop: '3rem' }}>
+      <Typography variant="h6" component="h6">
+        Updated {lastUpdate}
+      </Typography>
+
+      <GlobalStats style={{ marginTop: '1rem' }}></GlobalStats>
+      <CountryStats style={{ marginTop: '3rem' }}></CountryStats>
+      <img
+        src={`${BASE_URL}/og`}
+        alt="Graphics"
+        style={{
+          maxWidth: '50%',
+          marginTop: '3rem'
+        }}
+      />
+    </Container>
   );
 }
 
