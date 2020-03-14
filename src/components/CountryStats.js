@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Stats from './Stats';
-import { Typography, LinearProgress } from '@material-ui/core';
-import _ from 'lodash';
+import { Typography } from '@material-ui/core';
 import CountrySelector from './CountrySelector';
 
 export default function CountryStats(props) {
@@ -11,7 +10,7 @@ export default function CountryStats(props) {
   const url = `/countries/${country}`;
   return (
     <div style={props.style}>
-      <Typography variant="h2" component="h2">
+      <Typography variant="h3" component="h3">
         Results for {countryName}
       </Typography>
 

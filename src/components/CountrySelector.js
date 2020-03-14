@@ -29,7 +29,11 @@ export default function CountrySelector({
   }
 
   const options = Object.entries(countries.countries).map(([country, key]) => {
-    return <MenuItem value={key}>{country}</MenuItem>;
+    return (
+      <MenuItem value={key} key={key}>
+        {country}
+      </MenuItem>
+    );
   });
 
   return (

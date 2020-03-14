@@ -16,8 +16,13 @@ export default function Stats({ url, style }) {
   }
   if (data && 'error' in data) {
     return (
-      <Typography variant="h4" component="h4" style={{ marginTop: '2rem' }}>
-        There's no data available for this country
+      <Typography
+        variant="h4"
+        component="h4"
+        color="error"
+        style={{ marginTop: '2rem' }}
+      >
+        There isn't data available for this country
       </Typography>
     );
   }
