@@ -58,6 +58,15 @@ function App() {
 
         <CountryStats style={{ marginTop: '3rem' }}></CountryStats>
 
+        <Typography variant="h3" component="h3" style={{ marginTop: '1rem' }}>
+          <Link
+            target="_blank"
+            href="https://drive.google.com/open?id=1yCPR-ukAgE55sROnmBUFmtLN6riVLTu3&usp=sharing"
+          >
+            Realtime Map
+          </Link>
+        </Typography>
+
         <Typography variant="h2" component="h2" style={{ marginTop: '1rem' }}>
           Charts
         </Typography>
