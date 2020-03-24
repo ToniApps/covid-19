@@ -28,7 +28,7 @@ function getRealDate(date) {
 export default function CountryDailyChart() {
   const [date, setDate] = useState(Moment());
   const [showChina, setShowChina] = useState(false);
-  const [minData, setMinData] = useState(100);
+  const [minData, setMinData] = useState(10000);
   const [data, errors, loading] = useApiData('daily/' + getRealDate(date));
 
   if (errors) {
@@ -54,10 +54,11 @@ export default function CountryDailyChart() {
   });
 
   if (!showChina) {
-    labels.shift();
-    confirmedCases.shift();
-    recoveredCases.shift();
-    deathCases.shift();
+    const position = labels.findIndex(c => c === 'China');
+    labels.splice(position, 1);
+    confirmedCases.splice(position, 1);
+    recoveredCases.splice(position, 1);
+    deathCases.splice(position, 1);
   }
 
   const dataSet = {

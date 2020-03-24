@@ -4,7 +4,7 @@ import { Typography } from '@material-ui/core';
 import CountrySelector from './CountrySelector';
 
 export default function CountryStats(props) {
-  const [country, setCountry] = useState('ES');
+  const [country, setCountry] = useState('ESP');
   const [countryName, setCountryName] = useState('Spain');
 
   const url = `/countries/${country}`;

@@ -28,10 +28,10 @@ export default function CountrySelector({
     return <CircularProgress />;
   }
 
-  const options = Object.entries(countries.countries).map(([country, key]) => {
+  const options = countries.countries.map(({ name, iso3 }) => {
     return (
-      <MenuItem value={key} key={key}>
-        {country}
+      <MenuItem value={iso3} key={iso3}>
+        {name}
       </MenuItem>
     );
   });
