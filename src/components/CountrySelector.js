@@ -17,7 +17,10 @@ export default function CountrySelector({
   const [countries, errors, loading] = useApiData('countries');
   const handleCountryChanged = e => {
     onCountrySelected(e.target.value);
-    updateCountryName(_.invert(countries.countries)[e.target.value]);
+    updateCountryName(
+      _.find(countries.countries, country => country.iso3 === e.target.value)
+        .name
+    );
   };
 
   if (errors) {
@@ -28,9 +31,9 @@ export default function CountrySelector({
     return <CircularProgress />;
   }
 
-  const options = countries.countries.map(({ name, iso3 }) => {
+  const options = countries.countries.map(({ name, iso2, iso3 }) => {
     return (
-      <MenuItem value={iso3} key={iso3}>
+      <MenuItem value={iso3} key={`${iso3}${iso2}${name}`}>
         {name}
       </MenuItem>
     );
